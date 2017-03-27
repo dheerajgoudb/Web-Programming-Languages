@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8"/>
+		<title>Baby Names</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+		</script>
+		<script type = "text/javascript">
+			$(document).ready(function() {
+				$("button").click(function() {
+					var yr = $("#year").val();
+					var gndr = $('#gender').val();
+					
+					$.ajax({
+						url : "babynames.php",
+						type : "get",
+						data : {
+							year : yr,
+							gender : gndr
+						},
+						success: function(response)
+						{
+							$("#results").html(response);
+						}
+					});
+				});
+			});
+		</script>
+		<style type = "text/css">
+			#lists
+			{
+				border : 10px solid green;
+				padding : 25px;
+				background-color : lightgrey;
+				width : 200px;
+				float : left;
+				margin-left : 300px;
+			}
+			#results
+			{
+				display : table;
+				padding : 20px;
+				float : right;
+				margin-right : 300px;
+			}
+			button
+			{
+				margin : 0 auto;
+				display : block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "lists">
+			<label>Year: </label>
+			<select name = "year" id = "year">
+				<!--<option disabled selected value>Select</option>-->
+				<option></option>
+				<option value = "2005">2005</option>
+				<option value = "2006">2006</option>
+				<option value = "2007">2007</option>
+				<option value = "2008">2008</option>
+				<option value = "2009">2009</option>
+				<option value = "2010">2010</option>
+				<option value = "2011">2011</option>
+				<option value = "2012">2012</option>
+				<option value = "2013">2013</option>
+				<option value = "2014">2014</option>
+				<option value = "2015">2015</option>
+			</select>
+			<br/><br/>
+			<label>Gender: </label>
+			<select name = "gender" id = "gender">
+				<!--<option disabled selected value>Select</option>-->
+				<option></option>
+				<option value = "f">f</option>
+				<option value = "m">m</option>
+			</select>
+			<br/><br/>
+			<button type = "button">Get Details</button>
+		</div>
+		<div id = "results"></div>
+	</body>
+</html>
